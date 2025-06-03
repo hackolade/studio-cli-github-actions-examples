@@ -1,8 +1,8 @@
-name: Run Hackolade CLI in CI
+name: Run Hackolade CLI using Docker Compose in CI
 on:
     workflow_dispatch:
 jobs:
- run-hackolade:
+ run-hackolade-with-compose:
     runs-on: ubuntu-latest
     env:
         # License key must be anaged as a secret (Repository or Organization)
@@ -37,9 +37,9 @@ jobs:
         id: generate-html-doc-travel-model
         run: |
           docker compose run --rm hackoladeStudioCLI genDoc \
-            --model=/github/workspace/models/model.json \
+            --model=/github/workspace/models/travel.json \
             --format=HTML \
-            --doc=/github/workspace/output/doc.html
+            --doc=/home/hackolade/Documents/output/travel.html
 
       - name: Retrieve Hackolade output files from volume
         run: |
@@ -62,3 +62,18 @@ jobs:
       - name: Tear down
         run: |
           docker compose down -v
+
+      - name: Prepare generated artifacts
+        id: prepare-hackolade-studio-output
+        run: |
+          ls -Ralih output
+          cp ./output/travel.html ./documentation/.
+      # https://github.com/marketplace/actions/create-pull-request
+      - name: Open Pull Request with generated documentation
+        id: open-pr-with-updated-doc
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: ./documentation/travel.html
+          branch: update-documentation
+          branch-suffix: timestamp
+          title: Update HTML documentation for travel.json data model
