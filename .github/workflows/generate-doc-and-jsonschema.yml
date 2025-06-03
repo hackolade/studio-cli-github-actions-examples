@@ -90,7 +90,7 @@ jobs:
         id: prepare-hackolade-studio-output
         run: |
           cp ./output/output/travel.html ./documentation/.
-          cp -r ./output/travel-sample/* ./generated/.
+          cp -r ./output/travel-sample ./generated/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
