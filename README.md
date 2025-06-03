@@ -1,5 +1,7 @@
 
-# Gtihub Actions workflow example(s) of running Hackolade Studio CLI
+[![Run Hackolade CLI using Docker Compose on Github Actions](https://github.com/hackolade/studio-cli-github-actions-examples/actions/workflows/generate-doc-and-jsonschema.yml/badge.svg)](https://github.com/hackolade/studio-cli-github-actions-examples/actions/workflows/generate-doc-and-jsonschema.yml)
+
+# GitHub Actions workflow example(s) of running Hackolade Studio CLI
 Github Action's workflow examples to leverage [Hackolade Studio CLI Docker image](https://github.com/hackolade/docker/tree/main/Studio#readme) for CICD scenarios
 
 ## Licensing
