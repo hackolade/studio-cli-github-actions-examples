@@ -5,8 +5,9 @@ jobs:
  run-hackolade-with-compose:
     runs-on: ubuntu-latest
     env:
-        # License key must be anaged as a secret (Repository or Organization)
+        # License key must be managed as a secret (Repository or Organization)
         HACKOLADE_KEY: ${{ secrets.HACKOLADE_CONCURRENT_LICENSE_KEY }}
+        HACKOLADE_STUDIO_CLI_IMAGE: studio:latest
         REPOSITORY_DIR_IN_CONTAINER: '/github/workspace/repository'
         OUTPUT_DIR_IN_CONTAINER: '/home/hackolade/Documents/output'
     steps:
@@ -22,7 +23,7 @@ jobs:
       - name: Build Hackolade Docker image
         id: build-studio-cli-docker-image
         run: |
-          docker build --no-cache --pull -t hackolade:latest .
+          docker build --no-cache --pull -t ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} .
 
       - name: Retrieve image identifier for GHA
         id: retrieve-identifier-for-hackolade-studio-licensing
@@ -35,7 +36,7 @@ jobs:
             --key "${{ env.HACKOLADE_KEY }}" \
             --identifier "${{ steps.retrieve-identifier-for-hackolade-studio-licensing.outputs.identifier }}"
 
-      - name: Generate HTML documentation for Couchbase travel.json example model
+      - name: Generate HTML documentation for travel.json example model
         id: generate-html-doc-travel-model
         run: |
           # Working directory in container is set to REPOSITORY_DIR_IN_CONTAINER
@@ -50,7 +51,7 @@ jobs:
             -v hackolade-studio-logs:/logs \
             -v "${PWD}/logs:/logs-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /logs /logs-on-host/logs-doc-generation
+            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /logs /logs-on-host/logs-doc-generation
 
       - name: FE - Generate jsonschema file for travel.json example model
         id: generate-fe-jsonschema-for-travel-model
@@ -71,7 +72,7 @@ jobs:
             -v hackolade-studio-output:/output \
             -v "${PWD}/output:/output-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /output /output-on-host/.
+            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /output /output-on-host/.
 
       - name: Retrieve Hackolade logs for jsonschema generation
         run: |
@@ -80,7 +81,7 @@ jobs:
             -v hackolade-studio-logs:/logs \
             -v "${PWD}/logs:/logs-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /logs /logs-on-host/logs-fe-jsonschema-generation
+            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /logs /logs-on-host/logs-fe-jsonschema-generation
 
       - name: Tear down
         run: |

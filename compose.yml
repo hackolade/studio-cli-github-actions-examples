@@ -2,14 +2,14 @@
 services:
   hackoladeStudioCLI:
     # Uses locally built image from local Dockerfile in a previous step
-    image: hackolade:latest
+    image: ${HACKOLADE_STUDIO_CLI_IMAGE}
     working_dir: ${REPOSITORY_DIR_IN_CONTAINER}
     volumes:
     - hackolade-studio-app-data:/home/hackolade/.config/Hackolade
     - hackolade-studio-logs:/home/hackolade/Documents/HackoladeLogs
-    - hackolade-studio-output:${OUTPUT_DIR_IN_CONTAINER:-/home/hackolade/Documents/output}
+    - hackolade-studio-output:${OUTPUT_DIR_IN_CONTAINER}
     # Provide models or inputs from the host (but can be done through named volumes too)
-    - ${PWD}:${REPOSITORY_DIR_IN_CONTAINER:-/github/workspace/repository}
+    - ${PWD}:${REPOSITORY_DIR_IN_CONTAINER}
     # If you have custom options to configure Hackolade like naming conventions or custom properties uncomment the following line
     #  - ${PWD}/options:/home/hackolade/.hackolade/options
 
