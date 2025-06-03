@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         # License key must be anaged as a secret (Repository or Organization)
-        HACKOLADE_KEY: ${{ secrets.HACKOLADE_LICENSE_KEY }}
+        HACKOLADE_KEY: ${{ secrets.HACKOLADE_CONCURRENT_LICENSE_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
