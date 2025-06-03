@@ -6,6 +6,7 @@ Github Action's workflow examples to leverage [Hackolade Studio CLI Docker image
 
 ## Licensing
 
+> [!TIP]
 >Running Hackolade Studio Docker image on Github Actions requires a concurrent License.
 >To purchase a concurrent license subscription, please send an email to support@hackolade.com.
 
