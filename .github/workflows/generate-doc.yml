@@ -50,6 +50,12 @@ jobs:
             -u root \
             -v hackolade-studio-output:/output \
             -v "${PWD}/output:/output-on-host" \
+            --entrypoint ls \
+            hackolade:latest -Ralih /output
+          docker run --rm --init \
+            -u root \
+            -v hackolade-studio-output:/output \
+            -v "${PWD}/output:/output-on-host" \
             --entrypoint cp \
             hackolade:latest -r /output /output-on-host/.
 
@@ -70,7 +76,7 @@ jobs:
         id: prepare-hackolade-studio-output
         run: |
           ls -Ralih output
-          cp ./output/travel.html ./documentation/.
+          cp ./output/output/travel.html ./documentation/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
