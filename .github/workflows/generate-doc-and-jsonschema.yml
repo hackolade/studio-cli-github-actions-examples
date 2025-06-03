@@ -88,6 +88,11 @@ jobs:
           docker compose down -v
 
       - name: Prepare generated artifacts
+        id: list-outputs
+        run: |
+          ls -Rah ./output
+
+      - name: Prepare generated artifacts
         id: prepare-hackolade-studio-output
         run: |
           cp ./output/output/travel.html ./documentation/.
