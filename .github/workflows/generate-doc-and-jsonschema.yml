@@ -72,7 +72,7 @@ jobs:
             -v hackolade-studio-output:/output \
             -v "${PWD}/output:/output-on-host" \
             --entrypoint cp \
-            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /output/output /output-on-host/.
+            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /output/ /output-on-host/
 
       - name: Retrieve Hackolade logs for jsonschema generation
         run: |
