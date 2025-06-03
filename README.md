@@ -1,5 +1,5 @@
 
-# studio-cli-github-actions-examples
+# Gtihub Actions workflow example(s) of running Hackolade Studio CLI
 Github Action's workflow examples to leverage [Hackolade Studio CLI Docker image](https://github.com/hackolade/docker/tree/main/Studio#readme) for CICD scenarios
 
 ## Licensing
