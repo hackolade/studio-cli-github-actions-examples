@@ -16,6 +16,6 @@ services:
 volumes:
   hackolade-studio-app-data: {}
   hackolade-studio-logs:
-    external: true
+    name: "hackolade-studio-logs"
   hackolade-studio-output:
-    external: true
+    name: "hackolade-studio-output"
