@@ -57,7 +57,7 @@ jobs:
             -v hackolade-studio-output:/output \
             -v "${PWD}/output:/output-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /output /output-on-host/.
+            hackolade:latest -r /output/* /output-on-host/.
 
       - name: Retrieve Hackolade logs from volume
         run: |
@@ -66,7 +66,7 @@ jobs:
             -v hackolade-studio-logs:/logs \
             -v "${PWD}/logs:/logs-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /logs /logs-on-host/.
+            hackolade:latest -r /logs/* /logs-on-host/.
 
       - name: Tear down
         run: |
@@ -75,8 +75,7 @@ jobs:
       - name: Prepare generated artifacts
         id: prepare-hackolade-studio-output
         run: |
-          ls -Ralih output
-          cp ./output/output/travel.html ./documentation/.
+          cp ./output/travel.html ./documentation/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
