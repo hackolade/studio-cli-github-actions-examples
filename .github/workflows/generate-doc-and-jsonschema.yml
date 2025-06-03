@@ -89,14 +89,14 @@ jobs:
       - name: Prepare generated artifacts
         id: prepare-hackolade-studio-output
         run: |
-          ls -Ralih ./output
           cp ./output/output/travel.html ./documentation/.
+          cp -r ./output/travel-sample/* ./generated/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
         uses: peter-evans/create-pull-request@v7
         with:
-          add-paths: ./documentation/travel.html
+          add-paths: ./documentation/travel.html,./generated/travel-sample
           branch: update-documentation
           branch-suffix: timestamp
-          title: Update HTML documentation for travel.json data model
+          title: Update HTML documentation and jsonschema sample for travel.json data model
