@@ -1,0 +1,19 @@
+# This compose is sourced from https://github.com/hackolade/docker/blob/main/Studio/docker-compose.yml
+services:
+  hackoladeStudioCLI:
+    # Uses locally built image from local Dockerfile in a previous step
+    image: hackolade:latest
+    working_dir: /github/workspace/repository
+    volumes:
+    - hackolade-studio-app-data:/home/hackolade/.config/Hackolade
+    - hackolade-studio-logs:/home/hackolade/Documents/HackoladeLogs
+    - hackolade-studio-output:/home/hackolade/Documents/output
+    # Provide models or inputs from the host (but can be done through named volumes too)
+    - ${PWD}:/github/workspace/repository
+    # If you have custom options to configure Hackolade like naming conventions or custom properties uncomment the following line
+    #  - ${PWD}/options:/home/hackolade/.hackolade/options
+
+volumes:
+  hackolade-studio-app-data: {}
+  hackolade-studio-logs: {}
+  hackolade-studio-output: {}
