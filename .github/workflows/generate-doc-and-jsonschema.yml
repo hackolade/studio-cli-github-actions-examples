@@ -72,7 +72,7 @@ jobs:
             -v hackolade-studio-output:/output \
             -v "${PWD}/output:/output-on-host" \
             --entrypoint cp \
-            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /output/ /output-on-host/
+            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /output /output-on-host/generated
 
       - name: Retrieve Hackolade logs for jsonschema generation
         run: |
@@ -87,23 +87,23 @@ jobs:
         run: |
           docker compose down -v
 
-      - name: Prepare generated artifacts and logs
+      - name: List generated artifacts and logs for user clarity
         id: list-outputs-and-logs
         run: |
           ls -Rah ./output
           ls -Rah ./logs
 
-      - name: Prepare generated artifacts
-        id: prepare-hackolade-studio-output
-        run: |
-          cp ./output/output/travel.html ./documentation/.
-          cp -r ./output/travel-sample ./generated/.
-      # https://github.com/marketplace/actions/create-pull-request
-      - name: Open Pull Request with generated documentation
-        id: open-pr-with-updated-doc
-        uses: peter-evans/create-pull-request@v7
-        with:
-          add-paths: ./documentation/travel.html,./generated/travel-sample
-          branch: update-documentation-and-jsonschema-travel-model
-          branch-suffix: timestamp
-          title: Update HTML documentation and jsonschema sample for travel.json data model
+      # - name: Prepare generated artifacts
+      #   id: prepare-hackolade-studio-output
+      #   run: |
+      #     cp ./output/output/travel.html ./documentation/.
+      #     cp -r ./output/travel-sample ./generated/.
+      # # https://github.com/marketplace/actions/create-pull-request
+      # - name: Open Pull Request with generated documentation
+      #   id: open-pr-with-updated-doc
+      #   uses: peter-evans/create-pull-request@v7
+      #   with:
+      #     add-paths: ./documentation/travel.html,./generated/travel-sample
+      #     branch: update-documentation-and-jsonschema-travel-model
+      #     branch-suffix: timestamp
+      #     title: Update HTML documentation and jsonschema sample for travel.json data model
