@@ -15,7 +15,7 @@ This repository exposes a workflow example that uses a license that is managed a
 ## Generating documentation with a [Docker image built locally](./Dockerfile) and a [compose file](./compose.yml)
 
 For the sake of demonstrating how to use Hackolade Studio cli on Github Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml)
-It use an example Couchbase model '''travel.json''' contained in this repository.
+It use an example Couchbase model ***travel.json*** contained in this repository.
 
 The workflow file executes the following steps:
 
@@ -24,7 +24,7 @@ The workflow file executes the following steps:
 3. Generates HTML documentation for the example travel.json model
 4. Forward Engineers the same example travel.json model as jsonschema
 5. Gathers logs and generated artifacts into Github workspace on the runner
-6. Open a Pull request from these artifacts
+6. Opens a Pull Request from these artifacts
 
 The workflow and the compose files are aligned and use the following sensible default variables:
 

@@ -34,7 +34,7 @@ jobs:
         run: |
           docker compose run --rm hackoladeStudioCLI validatekey \
             --key "${{ env.HACKOLADE_KEY }}" \
-            --identifier "${{ steps.retrieve-identifier-for-hackolade-studio-licensing.outputs.identifier }}"
+            --identifier "github-actions-workflow-${{ steps.retrieve-identifier-for-hackolade-studio-licensing.outputs.identifier }}"
 
       - name: Generate HTML documentation for travel.json example model
         id: generate-html-doc-travel-model
