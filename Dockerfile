@@ -24,46 +24,47 @@ USER root
 #
 # Uncomment lines below to select plugins to install in the image
 #
-RUN installPlugin.sh Avro
-RUN installPlugin.sh BigQuery
-RUN installPlugin.sh Cassandra
-RUN installPlugin.sh CosmosDB-with-SQL-API
-RUN installPlugin.sh CosmosDB-with-Mongo-API
-RUN installPlugin.sh CosmosDB-with-Gremlin-API
-RUN installPlugin.sh DeltaLake
-RUN installPlugin.sh DocumentDB
-RUN installPlugin.sh Elasticsearch
-RUN installPlugin.sh ElasticsearchV7plus
-RUN installPlugin.sh EventBridge
-RUN installPlugin.sh Firebase
-RUN installPlugin.sh Firestore
-RUN installPlugin.sh Glue
-RUN installPlugin.sh HBase
-RUN installPlugin.sh Hive
-RUN installPlugin.sh JanusGraph
-RUN installPlugin.sh Joi
-RUN installPlugin.sh Neptune-Gremlin
-RUN installPlugin.sh MariaDB
-RUN installPlugin.sh MarkLogic
-RUN installPlugin.sh MySQL
-RUN installPlugin.sh Neo4j
-RUN installPlugin.sh Neptune-Gremlin
-RUN installPlugin.sh OpenAPI
-RUN installPlugin.sh Oracle
-RUN installPlugin.sh Parquet
-RUN installPlugin.sh PostgreSQL
-RUN installPlugin.sh Protobuf
-RUN installPlugin.sh Redshift
-RUN installPlugin.sh ScyllaDB
-RUN installPlugin.sh Snowflake
-RUN installPlugin.sh SQLServer
-RUN installPlugin.sh Swagger
-RUN installPlugin.sh Synapse
-RUN installPlugin.sh Teradata
-RUN installPlugin.sh TinkerPop
-RUN installPlugin.sh YugabyteDB-YSQL
+# RUN installPlugin.sh Avro
+# RUN installPlugin.sh BigQuery
+# RUN installPlugin.sh Cassandra
+# RUN installPlugin.sh CosmosDB-with-SQL-API
+# RUN installPlugin.sh CosmosDB-with-Mongo-API
+# RUN installPlugin.sh CosmosDB-with-Gremlin-API
+# RUN installPlugin.sh DeltaLake
+# RUN installPlugin.sh DocumentDB
+# RUN installPlugin.sh Elasticsearch
+# RUN installPlugin.sh ElasticsearchV7plus
+# RUN installPlugin.sh EventBridge
+# RUN installPlugin.sh Firebase
+# RUN installPlugin.sh Firestore
+# RUN installPlugin.sh Glue
+# RUN installPlugin.sh HBase
+# RUN installPlugin.sh Hive
+# RUN installPlugin.sh JanusGraph
+# RUN installPlugin.sh Joi
+# RUN installPlugin.sh Neptune-Gremlin
+# RUN installPlugin.sh MariaDB
+# RUN installPlugin.sh MarkLogic
+# RUN installPlugin.sh MySQL
+# RUN installPlugin.sh Neo4j
+# RUN installPlugin.sh Neptune-Gremlin
+# RUN installPlugin.sh OpenAPI
+# RUN installPlugin.sh Oracle
+# RUN installPlugin.sh Parquet
+# RUN installPlugin.sh PostgreSQL
+# RUN installPlugin.sh Protobuf
+# RUN installPlugin.sh Redshift
+# RUN installPlugin.sh ScyllaDB
+# RUN installPlugin.sh Snowflake
+# RUN installPlugin.sh SQLServer
+# RUN installPlugin.sh Swagger
+# RUN installPlugin.sh Synapse
+# RUN installPlugin.sh Teradata
+# RUN installPlugin.sh TinkerPop
+# RUN installPlugin.sh YugabyteDB-YSQL
 
 # Ensure proper ownership to ease data exchange with Github runners
+RUN mkdir -p /home/hackolade/Documents/output
 RUN chown -R hackolade:hackolade /home/hackolade/Documents /home/hackolade/.hackolade /home/hackolade/.config
 
 # Studio shouldn't run as root
