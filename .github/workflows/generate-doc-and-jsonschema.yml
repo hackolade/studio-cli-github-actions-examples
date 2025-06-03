@@ -1,4 +1,4 @@
-name: Run Hackolade CLI using Docker Compose in CI
+name: Run Hackolade CLI using Docker Compose on Github Actions
 on:
     workflow_dispatch:
 jobs:
