@@ -93,17 +93,17 @@ jobs:
           ls -Rah ./output
           ls -Rah ./logs
 
-      # - name: Prepare generated artifacts
-      #   id: prepare-hackolade-studio-output
-      #   run: |
-      #     cp ./output/output/travel.html ./documentation/.
-      #     cp -r ./output/travel-sample ./generated/.
-      # # https://github.com/marketplace/actions/create-pull-request
-      # - name: Open Pull Request with generated documentation
-      #   id: open-pr-with-updated-doc
-      #   uses: peter-evans/create-pull-request@v7
-      #   with:
-      #     add-paths: ./documentation/travel.html,./generated/travel-sample
-      #     branch: update-documentation-and-jsonschema-travel-model
-      #     branch-suffix: timestamp
-      #     title: Update HTML documentation and jsonschema sample for travel.json data model
+      - name: Prepare generated artifacts
+        id: prepare-hackolade-studio-output
+        run: |
+          cp ./output/generated/travel.html ./documentation/.
+          cp -r ./output/generated/travel-sample/travel-sample ./generated/.
+      # https://github.com/marketplace/actions/create-pull-request
+      - name: Open Pull Request with generated documentation
+        id: open-pr-with-updated-doc
+        uses: peter-evans/create-pull-request@v7
+        with:
+          add-paths: ./documentation/travel.html,./generated/travel-sample
+          branch: update-documentation-and-jsonschema-travel-model
+          branch-suffix: timestamp
+          title: Update HTML documentation and jsonschema sample for travel.json data model
