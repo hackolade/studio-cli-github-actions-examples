@@ -97,6 +97,6 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           add-paths: ./documentation/travel.html,./generated/travel-sample
-          branch: update-documentation
+          branch: update-documentation-and-jsonschema-travel-model
           branch-suffix: timestamp
           title: Update HTML documentation and jsonschema sample for travel.json data model
