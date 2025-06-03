@@ -50,7 +50,7 @@ jobs:
             -v hackolade-studio-logs:/logs \
             -v "${PWD}/logs:/logs-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /logs/* /logs-on-host/logs-doc-generation/.
+            hackolade:latest -r /logs /logs-on-host/logs-doc-generation
 
       - name: FE - Generate jsonschema file for travel.json example model
         id: generate-fe-jsonschema-for-travel-model
@@ -71,7 +71,7 @@ jobs:
             -v hackolade-studio-output:/output \
             -v "${PWD}/output:/output-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /output/* /output-on-host/.
+            hackolade:latest -r /output /output-on-host/.
 
       - name: Retrieve Hackolade logs for jsonschema generation
         run: |
@@ -80,7 +80,7 @@ jobs:
             -v hackolade-studio-logs:/logs \
             -v "${PWD}/logs:/logs-on-host" \
             --entrypoint cp \
-            hackolade:latest -r /logs/* /logs-on-host/logs-fe-jsonschema-generation/.
+            hackolade:latest -r /logs /logs-on-host/logs-fe-jsonschema-generation
 
       - name: Tear down
         run: |
@@ -90,7 +90,7 @@ jobs:
         id: prepare-hackolade-studio-output
         run: |
           ls -Ralih ./output
-          cp ./output/travel.html ./documentation/.
+          cp ./output/output/travel.html ./documentation/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
