@@ -7,6 +7,8 @@ jobs:
     env:
         # License key must be anaged as a secret (Repository or Organization)
         HACKOLADE_KEY: ${{ secrets.HACKOLADE_CONCURRENT_LICENSE_KEY }}
+        REPOSITORY_DIR_IN_CONTAINER: '/github/workspace/repository'
+        OUTPUT_DIR_IN_CONTAINER: '/home/hackolade/Documents/output'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,10 +38,11 @@ jobs:
       - name: Generate HTML documentation for travel.json example model
         id: generate-html-doc-travel-model
         run: |
+          # Working directory in container is set to REPOSITORY_DIR_IN_CONTAINER
           docker compose run --rm hackoladeStudioCLI genDoc \
-            --model=/github/workspace/models/travel.json \
+            --model=travel.json \
             --format=HTML \
-            --doc=/home/hackolade/Documents/output/travel.html
+            --doc=${{ env.OUTPUT_DIR_IN_CONTAINER }}/travel.html
 
       - name: Retrieve Hackolade output files from volume
         run: |
