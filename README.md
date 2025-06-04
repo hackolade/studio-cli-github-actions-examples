@@ -24,7 +24,7 @@ The workflow file executes the following steps:
 2. Validates a concurrent license key (managed as a repository secret) using necessary information
 3. Generates HTML documentation for the example travel.json model
 4. Forward Engineers the same example travel.json model as jsonschema
-5. Gathers logs and generated artifacts into Github workspace on the runner
+5. Gathers logs and generated artifacts into GitHub workspace on the runner
 6. Opens a Pull Request from these artifacts
 
 The workflow and the compose files are aligned and use the following default variables:
