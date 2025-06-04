@@ -10,7 +10,7 @@ For CI/CD scenarios leveraging the Docker image of Hackolade Studio CLI [documen
 >Running Hackolade Studio Docker image on GitHub Actions requires a concurrent License.
 >To purchase a concurrent license subscription, please send an email to sales@hackolade.com.
 
-This repository exposes a workflow example that uses a license that is managed as a [GitHub Action secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions). License keys should be kept secret.
+This repository exposes a workflow example that uses a license managed as a [GitHub Action secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions). License keys should be kept secret.
 
 ## Build your Docker image and push it to Docker Hub
 
@@ -19,7 +19,7 @@ The [Dockerfile](./Dockerfile) contained in this repository allows to build an i
 > [!TIP]
 >In order to significantly save bandwidth, it is advised to build the image and push the image to Docker Hub or your own private Container registry of choice.
 
-In the example we will suppose we have the image ***studio:latest*** hosted on Docker Hub with the plugins we want to use.
+In the example we  have the image ***studio:latest*** hosted on Docker Hub with the plugins we want to use.
 
 ```bash
 docker buildx build -t studio:latest --push .
@@ -34,7 +34,7 @@ For the sake of demonstrating how to use Hackolade Studio CLI triggered by GitHu
 It uses an example Couchbase model ***travel.json*** contained in this repository.
 
 > [!NOTE]
->This workflow example as a manual trigger (e.g. uses workflow_dispatch GHA trigger event).
+>This workflow example uses a manual trigger (e.g. uses workflow_dispatch GHA trigger event).
 
 The workflow file executes the following steps:
 
@@ -55,7 +55,7 @@ The workflow and the compose files are aligned and use the following default var
 
 In this scenario, we would like to automatically generate the new Markdown documentation for this updated model when the Pull Request is being merged into the `main` branch
 
-In such a case, your workflow trigger has to be like the following:
+Here is a workflow trigger example for this use case:
 
 ```yaml
 name: Run Hackolade CLI using Docker Compose on Github Actions
