@@ -37,13 +37,13 @@ jobs:
             --identifier "github-actions-workflow-${{ steps.retrieve-identifier-for-hackolade-studio-licensing.outputs.identifier }}"
 
       - name: Generate Markdown documentation for travel.json example model
-        id: generate-html-doc-travel-model
+        id: generate-md-doc-travel-model
         run: |
           # Working directory in container is set to REPOSITORY_DIR_IN_CONTAINER
           docker compose run --rm hackoladeStudioCLI genDoc \
             --model=travel.json \
             --format=MD \
-            --doc=${{ env.OUTPUT_DIR_IN_CONTAINER }}/travel.html
+            --doc=${{ env.OUTPUT_DIR_IN_CONTAINER }}/travel.md
       - name: Retrieve Hackolade logs of documentation generation
         run: |
           docker run --rm --init \
@@ -96,14 +96,14 @@ jobs:
       - name: Prepare generated artifacts
         id: prepare-hackolade-studio-output
         run: |
-          cp ./output/generated/travel.html ./documentation/.
+          cp ./output/generated/travel.md ./documentation/.
           cp -r ./output/generated/travel-sample/travel-sample ./generated/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
         uses: peter-evans/create-pull-request@v7
         with:
-          add-paths: ./documentation/travel.html,./generated/travel-sample
+          add-paths: ./documentation/travel.md,./generated/travel-sample
           branch: update-documentation-and-jsonschema-travel-model
           branch-suffix: timestamp
-          title: Update HTML documentation and jsonschema sample for travel.json data model
+          title: Update MD documentation and jsonschema sample for travel.json data model
