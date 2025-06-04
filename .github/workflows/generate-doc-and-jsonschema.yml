@@ -36,13 +36,13 @@ jobs:
             --key "${{ env.HACKOLADE_KEY }}" \
             --identifier "github-actions-workflow-${{ steps.retrieve-identifier-for-hackolade-studio-licensing.outputs.identifier }}"
 
-      - name: Generate HTML documentation for travel.json example model
+      - name: Generate Markdown documentation for travel.json example model
         id: generate-html-doc-travel-model
         run: |
           # Working directory in container is set to REPOSITORY_DIR_IN_CONTAINER
           docker compose run --rm hackoladeStudioCLI genDoc \
             --model=travel.json \
-            --format=HTML \
+            --format=MD \
             --doc=${{ env.OUTPUT_DIR_IN_CONTAINER }}/travel.html
       - name: Retrieve Hackolade logs of documentation generation
         run: |
