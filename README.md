@@ -1,21 +1,22 @@
 
 [![Run Hackolade CLI using Docker Compose on Github Actions](https://github.com/hackolade/studio-cli-github-actions-examples/actions/workflows/generate-doc-and-jsonschema.yml/badge.svg)](https://github.com/hackolade/studio-cli-github-actions-examples/actions/workflows/generate-doc-and-jsonschema.yml)
 
-# GitHub Actions workflow example(s) of running Hackolade Studio CLI
-Github Action's workflow examples to leverage [Hackolade Studio CLI Docker image](https://github.com/hackolade/docker/tree/main/Studio#readme) for CICD scenarios
+# GitHub Actions workflow example of running Hackolade Studio CLI
+For CI/CD scenarios leveraging the Docker image of Hackolade Studio CLI [documented here](https://github.com/hackolade/docker/tree/main/Studio#readme), it is useful to leverage the GitHub Action workflow.  This repository is just a simple example.  It should serve as an inspiration for users.  It is possible to orchestrate a succession of Hackolade Studio CLI commands, combined with Git commands and others to achieve ambitious use cases, all triggered by events in your repository.  For example when a PR for a model is merged in to the main branch.
 
 ## Licensing
 
 > [!TIP]
->Running Hackolade Studio Docker image on Github Actions requires a concurrent License.
->To purchase a concurrent license subscription, please send an email to support@hackolade.com.
+>Running Hackolade Studio Docker image on GitHub Actions requires a concurrent License.
+>To purchase a concurrent license subscription, please send an email to sales@hackolade.com.
 
-This repository exposes a workflow example that uses a license that is managed as a [Github Action secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions). License keys should be kept secret.
+This repository exposes a workflow example that uses a license that is managed as a [GitHub Action secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions). License keys should be kept secret.
+
 
 ## Generating documentation with a [Docker image built locally](./Dockerfile) and a [compose file](./compose.yml)
 
-For the sake of demonstrating how to use Hackolade Studio cli on Github Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml)
-It use an example Couchbase model ***travel.json*** contained in this repository.
+For the sake of demonstrating how to use Hackolade Studio CLI triggered by GitHub Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml)
+It uses an example Couchbase model ***travel.json*** contained in this repository.
 
 The workflow file executes the following steps:
 
@@ -26,7 +27,7 @@ The workflow file executes the following steps:
 5. Gathers logs and generated artifacts into Github workspace on the runner
 6. Opens a Pull Request from these artifacts
 
-The workflow and the compose files are aligned and use the following sensible default variables:
+The workflow and the compose files are aligned and use the following default variables:
 
 - ***HACKOLADE_STUDIO_CLI_IMAGE*** defaulting to `studio:latest` -> the Docker image name for Hackolade Studio Cli.
 - ***REPOSITORY_DIR_IN_CONTAINER*** defaulting to `/github/workspace/repository` -> the working directory for the cli and where the Github repository content is mounted.
