@@ -76,6 +76,15 @@ jobs:
         run: |
           ls -Rah ./output
           ls -Rah ./logs
+      #https://github.com/actions/upload-artifact/tree/v4/?tab=readme-ov-file#zip-archives
+      - name: Upload logs to Github Artifacts
+        id: persist-logs
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: studio-cli-logs
+          path: ./logs
+          if-no-files-found:
+          retention-days: 5
 
       - name: Prepare generated artifacts
         id: prepare-hackolade-studio-output
