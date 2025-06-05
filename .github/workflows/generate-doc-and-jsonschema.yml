@@ -37,6 +37,9 @@ jobs:
           docker compose run --rm hackoladeStudioCLI validatekey \
             --key "${{ env.HACKOLADE_KEY }}" \
             --identifier "github-actions-workflow-${{ steps.retrieve-identifier-for-hackolade-studio-licensing.outputs.identifier }}"
+      - name: Retrieve Hackolade logs of license validation
+        run: |
+          docker cp ${{ env.DATA_VOLUMES_CONTAINER_NAME }}:/logs/. ${PWD}/logs/logs-validate-license
 
       - name: Generate Markdown documentation for travel.json example model
         id: generate-md-doc-travel-model
