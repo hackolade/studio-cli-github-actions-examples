@@ -83,7 +83,7 @@ jobs:
         with:
           name: studio-cli-logs
           path: ./logs
-          if-no-files-found:
+          if-no-files-found: warn
           retention-days: 5
 
       - name: Prepare generated artifacts
