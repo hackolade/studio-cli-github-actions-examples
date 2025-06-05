@@ -2,7 +2,7 @@
 [![Run Hackolade CLI using Docker Compose on Github Actions](https://github.com/hackolade/studio-cli-github-actions-examples/actions/workflows/generate-doc-and-jsonschema.yml/badge.svg)](https://github.com/hackolade/studio-cli-github-actions-examples/actions/workflows/generate-doc-and-jsonschema.yml)
 
 # GitHub Actions workflow example of running Hackolade Studio CLI
-For CI/CD scenarios leveraging the Docker image of Hackolade Studio CLI [documented here](https://github.com/hackolade/docker/tree/main/Studio#readme), it is useful to leverage the GitHub Action workflow.  This repository is just a simple example.  It should serve as an inspiration for users.  It is possible to orchestrate a succession of Hackolade Studio CLI commands, combined with Git commands and others to achieve ambitious use cases, all triggered by events in your repository.  For example when a PR for a model is merged in to the main branch.
+For CI/CD scenarios leveraging the Docker image of Hackolade Studio CLI [documented here](https://github.com/hackolade/docker/tree/main/Studio#readme), you may want to leverage the GitHub Actions workflow.  This repository is just a simple example.  It should serve as an inspiration for users.  It is possible to orchestrate a succession of Hackolade Studio CLI commands, combined with Git commands and others to achieve ambitious use cases, all triggered by events in your repository.  For example when a PR for a model is merged in to the main branch.
 
 ## Licensing
 
@@ -10,14 +10,14 @@ For CI/CD scenarios leveraging the Docker image of Hackolade Studio CLI [documen
 >Running Hackolade Studio Docker image on GitHub Actions requires a concurrent License.
 >To purchase a concurrent license subscription, please send an email to sales@hackolade.com.
 
-This repository exposes a workflow example that uses a license managed as a [GitHub Action secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions). License keys should be kept secret.
+This repository exposes a workflow example that uses a license managed as a [GitHub Actions secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions). License keys should be kept secret.
 
 ## Build your Docker image and push it to Docker Hub
 
-The [Dockerfile](./Dockerfile) contained in this repository allows to build an image with the lastest release available at the time of build for Hackolade Studio using [hackolade/studio](https://hub.docker.com/r/hackolade/studio/)
+The [Dockerfile](./Dockerfile) contained in this repository allows to build an image with the latest release of Hackolade Studio available at the time of build, using the Docker image [hackolade/studio](https://hub.docker.com/r/hackolade/studio/)
 
 > [!TIP]
->In order to significantly save bandwidth, it is advised to build the image and push the image to Docker Hub or your own private Container registry of choice.
+>In order to significantly save bandwidth, it is advised to build the image and push your image to Docker Hub or your own private Container registry of choice.
 
 In the example we  have the image ***studio:latest*** hosted on Docker Hub with the plugins we want to use.
 
@@ -28,37 +28,44 @@ docker buildx build -t studio:latest --push .
 > [!NOTE]
 >Make sure your compose file is aligned.
 
+
+
 ## Generating documentation with a [Docker image built locally](./Dockerfile) and a [compose file](./compose.yml)
 
-For the sake of demonstrating how to use Hackolade Studio CLI triggered by GitHub Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml)
+To illustrate how to use the Hackolade Studio CLI in GitHub Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml).  
+
 It uses an example Couchbase model ***travel.json*** contained in this repository.
 
 > [!NOTE]
->This workflow example uses a manual trigger (e.g. uses workflow_dispatch GHA trigger event).
+>This workflow example uses a manual trigger (e.g. uses workflow_dispatch GHA trigger event).  See below for a trigger example.
 
 The workflow file executes the following steps:
 
-1. Validates a concurrent license key (managed as a repository secret) using necessary information
-2. Generates Markdown documentation for the example travel.json model
-4. Gathers logs and generated artifacts into Github workspace on the runner
-5. Opens a Pull Request from these artifacts
+1. Validate a concurrent license key (managed as a repository secret) 
+2. Generate Markdown documentation for the example travel.json model, followed by the forward-engineering of JSON Schema  files for each of the entities in the model
+4. Gather logs and generated artifacts into GitHub workspace on the runner
+5. Open a Pull Request from these artifacts
+
+
 
 The workflow and the compose files are aligned and use the following default variables:
 
-- ***HACKOLADE_STUDIO_CLI_IMAGE*** defaulting to `studio:latest` -> the Docker image name for Hackolade Studio Cli.
-- ***REPOSITORY_DIR_IN_CONTAINER*** defaulting to `/github/workspace/repository` -> the working directory for the cli and where the Github repository content is mounted.
-- ***OUTPUT_DIR_IN_CONTAINER*** defaulting to `/home/hackolade/Documents/output` -> where artifacts are generated by the cli.
+- ***HACKOLADE_STUDIO_CLI_IMAGE*** defaulting to `studio:latest` -> the Docker image name for Hackolade Studio CLI.
+- ***REPOSITORY_DIR_IN_CONTAINER*** defaulting to `/github/workspace/repository` -> the working directory for the CLI and where the GitHub repository content is mounted.
+- ***OUTPUT_DIR_IN_CONTAINER*** defaulting to `/home/hackolade/Documents/output` -> where artifacts are generated by the CLI.
+
+
 
 ## Common scenario: Trigger the workflow when a Pull Request is merged in to the main branch.
 
->A data modeler pushes a Pull Request that updates a model using Hackolade Studio Workgroup Edition.
+>A data modeler pushes a Pull Request with updates to a model made using Hackolade Studio Workgroup Edition.
 
 In this scenario, we would like to automatically generate the new Markdown documentation for this updated model when the Pull Request is being merged into the `main` branch
 
 Here is a workflow trigger example for this use case:
 
 ```yaml
-name: Run Hackolade CLI using Docker Compose on Github Actions
+name: Run Hackolade CLI using Docker Compose on GitHub Actions
 on:
     push:
         branches:
