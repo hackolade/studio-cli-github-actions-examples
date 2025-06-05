@@ -10,20 +10,22 @@ jobs:
         HACKOLADE_STUDIO_CLI_IMAGE: studio:latest
         REPOSITORY_DIR_IN_CONTAINER: '/github/workspace/repository'
         OUTPUT_DIR_IN_CONTAINER: '/home/hackolade/Documents/output'
+        DATA_VOLUMES_CONTAINER_NAME: hck-studio-cli-generated-data
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Create logs and output directories
-        id: create-logs-and-output-directories
-        run: |
-          mkdir -p output
-          mkdir -p logs
 
       - name: Build Hackolade Docker image
         id: build-studio-cli-docker-image
         run: |
           docker build --no-cache --pull -t ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} .
+
+      - name: Create logs and output directories and data container
+        id: create-logs-and-output-directories
+        run: |
+          mkdir -p output
+          mkdir -p logs
+          docker container create --name ${{ env.DATA_VOLUMES_CONTAINER_NAME }} -v hackolade-studio-logs:/logs -v hackolade-studio-output:/output ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }}
 
       - name: Retrieve image identifier for GHA
         id: retrieve-identifier-for-hackolade-studio-licensing
@@ -46,13 +48,7 @@ jobs:
             --doc=${{ env.OUTPUT_DIR_IN_CONTAINER }}/travel.md
       - name: Retrieve Hackolade logs of documentation generation
         run: |
-          docker run --rm --init \
-            -u root \
-            -v hackolade-studio-logs:/logs \
-            -v "${PWD}/logs:/logs-on-host" \
-            --entrypoint cp \
-            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /logs /logs-on-host/logs-doc-generation
-
+          docker cp ${{ env.DATA_VOLUMES_CONTAINER_NAME }}:/logs/. ${PWD}/logs/logs-doc-generation/.
       - name: FE - Generate jsonschema file for travel.json example model
         id: generate-fe-jsonschema-for-travel-model
         run: |
@@ -65,27 +61,15 @@ jobs:
             --path ${{ env.OUTPUT_DIR_IN_CONTAINER }} \
             --outputtype jsonschema
 
-      - name: Retrieve Hackolade output files from volume
+      - name: Retrieve Hackolade output files and logs from volumes
         run: |
-          docker run --rm --init \
-            -u root \
-            -v hackolade-studio-output:/output \
-            -v "${PWD}/output:/output-on-host" \
-            --entrypoint cp \
-            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /output /output-on-host/generated
+          docker cp ${{ env.DATA_VOLUMES_CONTAINER_NAME }}:/output/. ${PWD}/output/.
+          docker cp ${{ env.DATA_VOLUMES_CONTAINER_NAME }}:/logs/. ${PWD}/logs/logs-fe-jsonschema-generation/.
 
-      - name: Retrieve Hackolade logs for jsonschema generation
-        run: |
-          docker run --rm --init \
-            -u root \
-            -v hackolade-studio-logs:/logs \
-            -v "${PWD}/logs:/logs-on-host" \
-            --entrypoint cp \
-            ${{ env.HACKOLADE_STUDIO_CLI_IMAGE }} -r /logs /logs-on-host/logs-fe-jsonschema-generation
-
-      - name: Tear down
+      - name: Tear down docker data
         run: |
           docker compose down -v
+          docker container rm ${{ env.DATA_VOLUMES_CONTAINER_NAME }}
 
       - name: List generated artifacts and logs for user clarity
         id: list-outputs-and-logs
@@ -96,14 +80,13 @@ jobs:
       - name: Prepare generated artifacts
         id: prepare-hackolade-studio-output
         run: |
-          cp ./output/generated/travel.md ./documentation/.
-          cp -r ./output/generated/travel-sample/travel-sample ./generated/.
+          cp -r ./output/ ./generated/.
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
         uses: peter-evans/create-pull-request@v7
         with:
-          add-paths: ./documentation/travel.md,./generated/travel-sample
+          add-paths: ./generated
           branch: update-documentation-and-jsonschema-travel-model
           branch-suffix: timestamp
           title: Update MD documentation and jsonschema sample for travel.json data model
