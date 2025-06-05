@@ -1,0 +1,294 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "compliance": "full",
+    "type": "object",
+    "title": "hotel",
+    "properties": {
+        "type": {
+            "type": "string",
+            "documentKind": true,
+            "isActivated": true,
+            "sample": "hotel"
+        },
+        "title": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Geneva"
+        },
+        "name": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Hotel Formule 1"
+        },
+        "address": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Route de Meyrin, 01210 Ferney Voltaire, France"
+        },
+        "directions": {
+            "type": "string",
+            "isActivated": true
+        },
+        "phone": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "+33 891 705 254"
+        },
+        "tollfree": {
+            "type": "string",
+            "isActivated": true
+        },
+        "email": {
+            "type": "string",
+            "isActivated": true
+        },
+        "fax": {
+            "type": "string",
+            "isActivated": true
+        },
+        "url": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "http://www.accorhotels.com/gb/hotel-2257-formule-1-hotelf1-geneve-aeroport-ferney-voltaire/index.shtml"
+        },
+        "checkin": {
+            "type": "string",
+            "isActivated": true
+        },
+        "checkout": {
+            "type": "string",
+            "isActivated": true
+        },
+        "price": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "31€"
+        },
+        "geo": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "sample": 43.2054,
+                    "unit": "Decimal degrees",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "isActivated": true
+                },
+                "lon": {
+                    "type": "number",
+                    "sample": 6.482,
+                    "unit": "Decimal degrees",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "isActivated": true
+                },
+                "alt": {
+                    "type": "number",
+                    "sample": 59,
+                    "isActivated": true
+                },
+                "accuracy": {
+                    "type": "string",
+                    "enum": [
+                        "ROOFTOP",
+                        "RANGE_APPROXIMATION",
+                        "INTERPOLATION"
+                    ],
+                    "sample": "ROOFTOP",
+                    "isActivated": true
+                }
+            },
+            "definitionRefs": [
+                [
+                    "ac277619-2b1e-11e7-bde4-57d99ab8fafb",
+                    "68e443a0-2b1f-11e7-bde4-57d99ab8fafb"
+                ],
+                [
+                    "ac283961-2b1e-11e7-bde4-57d99ab8fafb",
+                    "ac286070-2b1e-11e7-bde4-57d99ab8fafb",
+                    "cc2d7080-2b1f-11e7-bde4-57d99ab8fafb"
+                ]
+            ],
+            "isActivated": true,
+            "additionalProperties": true,
+            "required": [
+                "lat",
+                "lon",
+                "alt",
+                "accuracy"
+            ]
+        },
+        "id": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 9905
+        },
+        "country": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "France"
+        },
+        "city": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Ferney-Voltaire"
+        },
+        "state": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Rhône-Alpes"
+        },
+        "reviews": {
+            "type": "array",
+            "additionalItems": true,
+            "isActivated": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "author": {
+                        "type": "string",
+                        "isActivated": true,
+                        "sample": "Aaron Schmidt II"
+                    },
+                    "content": {
+                        "type": "string",
+                        "isActivated": true,
+                        "sample": "As a newer hotel that's close to the corporate offices of a business I visit regularly, I was excited to stay here for the first time last month. The hotel gets very high marks for staff enthusiasm, courtesy, friendlieness, and helpfulness. Being a newer hotel, it was spotlessly clean. I liked the breakfast area, although it did get a bit noisy when the \"rush\" hit about 8:00 a.m. on a Saturday morning. The room was similarly clean and comfortable. The wireless internet connection (free) was useful. I also liked their simply-put, straight-forward internet privacy policy (\"You have no expectation of privacy...). No beating around the bush there--wish others would spare us the jibberish and just come out and say what is obvious: on an unsecured, free wireless internet network connection, you don't have any privacy! There was just one problem, and I discovered later that a colleague who has stayed here twice experienced both times on this visit. I did not get my wake-up call, which made me late for a meeting. That is unaccetable, especially when I asked the front desk about the reliability of their wake-up calls. My back-up system for awakening (the hotel's very cheap alarm clocks) proved equally inadequate. The alarm did go off, but was so quiet that it couldn't be heard and didn't do the job. I'm not that heavy of a sleeper, either! It may be a little problem to some, but it's enough to put them on my \"one more chance\" list. I'd like to stay here again."
+                    },
+                    "date": {
+                        "type": "string",
+                        "isActivated": true,
+                        "sample": "2015-03-19 03:17:18 +0300"
+                    },
+                    "ratings": {
+                        "type": "object",
+                        "properties": {
+                            "Internet access": {
+                                "type": "number",
+                                "isActivated": true
+                            },
+                            "Business service": {
+                                "type": "number",
+                                "isActivated": true
+                            },
+                            "Check in / front desk": {
+                                "type": "number",
+                                "isActivated": true
+                            },
+                            "Cleanliness": {
+                                "type": "number",
+                                "isActivated": true,
+                                "sample": 5
+                            },
+                            "Location": {
+                                "type": "number",
+                                "isActivated": true,
+                                "sample": 5
+                            },
+                            "Overall": {
+                                "type": "number",
+                                "isActivated": true,
+                                "sample": 4
+                            },
+                            "Rooms": {
+                                "type": "number",
+                                "isActivated": true,
+                                "sample": 5
+                            },
+                            "Service": {
+                                "type": "number",
+                                "isActivated": true,
+                                "sample": 4
+                            },
+                            "Sleep Quality": {
+                                "type": "number",
+                                "isActivated": true
+                            },
+                            "Value": {
+                                "type": "number",
+                                "isActivated": true,
+                                "sample": 5
+                            }
+                        },
+                        "additionalProperties": true,
+                        "isActivated": true,
+                        "required": [
+                            "Overall"
+                        ]
+                    }
+                },
+                "additionalProperties": true,
+                "isActivated": true,
+                "required": [
+                    "author",
+                    "content",
+                    "date",
+                    "ratings"
+                ]
+            }
+        },
+        "public_likes": {
+            "type": "array",
+            "additionalItems": true,
+            "isActivated": true,
+            "items": {
+                "type": "string",
+                "isActivated": true,
+                "sample": "Lorena Hansen"
+            }
+        },
+        "vacancy": {
+            "type": "boolean",
+            "isActivated": true,
+            "sample": false
+        },
+        "description": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Right behind the airport on the French side. Inexpensive but still a good standard since it belongs to the Accor hotel chain."
+        },
+        "alias": {
+            "type": "string",
+            "isActivated": true
+        },
+        "pets_ok": {
+            "type": "boolean",
+            "isActivated": true,
+            "sample": false
+        },
+        "free_breakfast": {
+            "type": "boolean",
+            "isActivated": true,
+            "sample": false
+        },
+        "free_internet": {
+            "type": "boolean",
+            "isActivated": true,
+            "sample": true
+        },
+        "free_parking": {
+            "type": "boolean",
+            "isActivated": true,
+            "sample": false
+        }
+    },
+    "additionalProperties": true,
+    "isActivated": true,
+    "required": [
+        "type",
+        "title",
+        "name",
+        "geo",
+        "id",
+        "country",
+        "reviews",
+        "public_likes",
+        "vacancy",
+        "description",
+        "pets_ok",
+        "free_breakfast",
+        "free_internet",
+        "free_parking"
+    ]
+}
