@@ -32,7 +32,7 @@ docker buildx build -t studio:latest --push .
 
 ## Generating documentation with a [Docker image built locally](./Dockerfile) and a [compose file](./compose.yml)
 
-To illustrate how to use the Hackolade Studio CLI in GitHub Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml).  
+To illustrate how to use the Hackolade Studio CLI in GitHub Actions, this repository contains [one workflow file](./.github/workflows/generate-doc-and-jsonschema.yml).
 
 It uses an example Couchbase model ***travel.json*** contained in this repository.
 
@@ -41,7 +41,7 @@ It uses an example Couchbase model ***travel.json*** contained in this repositor
 
 The workflow file executes the following steps:
 
-1. Validate a concurrent license key (managed as a repository secret) 
+1. Validate a concurrent license key (managed as a repository secret)
 2. Generate Markdown documentation for the example travel.json model, followed by the forward-engineering of JSON Schema  files for each of the entities in the model
 4. Gather logs and generated artifacts into GitHub workspace on the runner
 5. Open a Pull Request from these artifacts
@@ -87,7 +87,7 @@ jobs:
       #https://github.com/tj-actions/changed-files?tab=readme-ov-file#on-push-%EF%B8%8F
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
+        uses: step-security/changed-files@46.0.5
         files: '**/*.hck.json'
 
       # - ... validate license (check workflow example)
