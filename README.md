@@ -111,7 +111,7 @@ jobs:
 
 ```
 
-## Persisting logs for troubleshooting if necessary
+## Persist logs for troubleshooting when help from Hackolade Support is necessary
 
 Hackolade Studio Cli is persisting its logs inside each Docker container that is created when executing Studio CLI commands.  To make sure you gather these logs for each step of your workflow you need to:
 
@@ -119,16 +119,18 @@ Hackolade Studio Cli is persisting its logs inside each Docker container that is
   >This is done in the example workflow thanks to a data container serving as a proxy to Docker named volumes.
   >You can then use this container ***hck-studio-cli-generated-data*** to retrieve the data you need into a local folder (e.g. `./logs`) on the GitHub Action runner.
 
+Example:
 ```yaml
-      - name: Retrieve Hackolade output files and logs from volumes
+      - name: Retrieve Hackolade logs from volumes
         run: |
-          docker cp ${{ env.DATA_VOLUMES_CONTAINER_NAME }}:/output/. ${PWD}/output/.
           docker cp ${{ env.DATA_VOLUMES_CONTAINER_NAME }}:/logs/. ${PWD}/logs/logs-fe-jsonschema-generation
 
 ```
 
 2. Upload all the files you want to keep to GitHub Artifacts.
 >This is done in the example workflow thanks to the action [actions/upload-artifact](#https://github.com/actions/upload-artifact/tree/v4/?tab=readme-ov-file#zip-archives).  This action makes sure you have a link to a Zip archive containing all your assets for each of your workflow run.
+
+Example:
 ```yaml
       - name: Upload logs to Github Artifacts
         id: persist-logs
