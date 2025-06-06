@@ -27,9 +27,11 @@ USER root
 # RUN installPlugin.sh Avro
 # RUN installPlugin.sh BigQuery
 # RUN installPlugin.sh Cassandra
+# RUN installPlugin.sh CockroachDB
 # RUN installPlugin.sh CosmosDB-with-SQL-API
 # RUN installPlugin.sh CosmosDB-with-Mongo-API
 # RUN installPlugin.sh CosmosDB-with-Gremlin-API
+# RUN installPlugin.sh Db2
 # RUN installPlugin.sh DeltaLake
 # RUN installPlugin.sh DocumentDB
 # RUN installPlugin.sh Elasticsearch
@@ -38,6 +40,7 @@ USER root
 # RUN installPlugin.sh Firebase
 # RUN installPlugin.sh Firestore
 # RUN installPlugin.sh Glue
+# RUN installPlugin.sh GraphQL
 # RUN installPlugin.sh HBase
 # RUN installPlugin.sh Hive
 # RUN installPlugin.sh JanusGraph
@@ -66,6 +69,25 @@ USER root
 # Ensure proper ownership to ease data exchange with Github runners
 RUN mkdir -p /home/hackolade/Documents/output
 RUN chown -R hackolade:hackolade /home/hackolade/Documents /home/hackolade/.hackolade /home/hackolade/.config
+
+# In you need to install a custom CA certificate
+# Install root CA in order to accept self-signed certificates
+# See https://chromium.googlesource.com/chromium/src/+/master/docs/linux/cert_management.md
+# COPY rootCA.crt /usr/local/share/ca-certificates/
+# RUN --mount=type=cache,id=apt-cache-${TARGETARCH},sharing=locked,target=/var/cache/apt \
+#     --mount=type=cache,id=apt-lib-${TARGETARCH},sharing=locked,target=/var/lib/apt <<EOF
+#     apt-get update
+#     apt-get -yq --no-install-suggests --no-install-recommends install libnss3-tools \
+#     NSS_DB_LOCATION="$HOME/.pki/nssdb"
+#     mkdir -p "$NSS_DB_LOCATION"
+#     certutil -d "$NSS_DB_LOCATION" -N
+#     certutil \
+#         -d "sql:$NSS_DB_LOCATION" \
+#         -A \
+#         -t "C,," \
+#         -n localhost \
+#         -i /usr/local/share/ca-certificates/rootCA.crt
+# EOF
 
 # Studio shouldn't run as root
 USER hackolade
