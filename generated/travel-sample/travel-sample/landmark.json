@@ -1,0 +1,142 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "compliance": "full",
+    "type": "object",
+    "title": "landmark",
+    "properties": {
+        "type": {
+            "type": "string",
+            "documentKind": true,
+            "isActivated": true,
+            "sample": "landmark"
+        },
+        "title": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Manchester/Victoria-Shopping District"
+        },
+        "name": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Royal Exchange"
+        },
+        "alt": {
+            "type": "string",
+            "isActivated": true
+        },
+        "address": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "St. Ann's Square"
+        },
+        "directions": {
+            "type": "string",
+            "isActivated": true
+        },
+        "phone": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "+44 161 833-9833"
+        },
+        "tollfree": {
+            "type": "string",
+            "isActivated": true
+        },
+        "email": {
+            "type": "string",
+            "isActivated": true
+        },
+        "url": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "http://www.royalexchange.co.uk"
+        },
+        "hours": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Mon-Sat 9:30 AM - Late (depending on length of evening's performance)"
+        },
+        "image": {
+            "type": "string",
+            "isActivated": true
+        },
+        "price": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Free entry to theatre building, theatre tickets vary"
+        },
+        "content": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "The neo-classical Royal Exchange was the commercial heart of Manchester's and therefore the world's cotton trade. The main trading hall, essentially a neo-Roman basilica, was at one time the largest commercial room in the world. It fell into disuse in the 1960s, but was rescued in the 1970s by the restoration of the building and the addition of an ultra-modern theatre in-the-round for Sir Robert D.H. Scott's '69 (now Royal Exchange) theatre Company. It stands in the centre of the main trading floor, squatting like an alien invader's spaceship, but is actually supported on the hall's load bearing columns. Ill-disposed members of the audience sitting in the theatre's surrounding on-stage banquette seats are well-placed to trip the actors up physically. Extensive wine merchant cellars have now been converted into a shopping centre and the wings surrounding the theatre hall contain offices and Barristers' chambers. Pop in during the day for a coffee or something stronger at the tranquil and elegant licensed cafe in the main hall: the entrance is up the stairs in St. Ann's Square or on Cross Street. As well as the wonderfully-restored interior and three dramatic coloured-glass domes, you can admire the trading board, which still shows the price of cotton around the world on the last day of trading in 1969. There is also a small, expensive craft shop inside."
+        },
+        "geo": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "isActivated": true,
+                    "sample": 53.4825
+                },
+                "lon": {
+                    "type": "number",
+                    "isActivated": true,
+                    "sample": -2.24482
+                },
+                "accuracy": {
+                    "type": "string",
+                    "isActivated": true,
+                    "sample": "APPROXIMATE"
+                }
+            },
+            "additionalProperties": true,
+            "isActivated": true,
+            "required": [
+                "lat",
+                "lon",
+                "accuracy"
+            ]
+        },
+        "activity": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "see"
+        },
+        "id": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 17400
+        },
+        "country": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "United Kingdom"
+        },
+        "city": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Manchester"
+        },
+        "state": {
+            "type": "string",
+            "isActivated": true
+        },
+        "image_direct_url": {
+            "type": "string",
+            "isActivated": true
+        }
+    },
+    "additionalProperties": true,
+    "isActivated": true,
+    "required": [
+        "type",
+        "title",
+        "name",
+        "content",
+        "geo",
+        "activity",
+        "id",
+        "country",
+        "city"
+    ]
+}

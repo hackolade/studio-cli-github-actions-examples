@@ -1,0 +1,115 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "compliance": "full",
+    "type": "object",
+    "title": "airport",
+    "properties": {
+        "type": {
+            "type": "string",
+            "documentKind": true,
+            "isActivated": true,
+            "sample": "airport"
+        },
+        "id": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 5786
+        },
+        "airportname": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "La M√¥le Airport"
+        },
+        "city": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "La M√¥le"
+        },
+        "country": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "France"
+        },
+        "faa": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "LTT"
+        },
+        "icao": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "LFTZ"
+        },
+        "tz": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Europe/Paris"
+        },
+        "geo": {
+            "type": "object",
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "sample": 43.2054,
+                    "unit": "Decimal degrees",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "isActivated": true
+                },
+                "lon": {
+                    "type": "number",
+                    "sample": 6.482,
+                    "unit": "Decimal degrees",
+                    "minimum": -90,
+                    "maximum": 90,
+                    "isActivated": true
+                },
+                "alt": {
+                    "type": "number",
+                    "sample": 59,
+                    "isActivated": true
+                },
+                "accuracy": {
+                    "type": "string",
+                    "enum": [
+                        "ROOFTOP",
+                        "RANGE_APPROXIMATION",
+                        "INTERPOLATION"
+                    ],
+                    "sample": "ROOFTOP",
+                    "isActivated": true
+                }
+            },
+            "definitionRefs": [
+                [
+                    "ac277619-2b1e-11e7-bde4-57d99ab8fafb",
+                    "68e443a0-2b1f-11e7-bde4-57d99ab8fafb"
+                ],
+                [
+                    "ac283961-2b1e-11e7-bde4-57d99ab8fafb",
+                    "ac286070-2b1e-11e7-bde4-57d99ab8fafb",
+                    "cc2d7080-2b1f-11e7-bde4-57d99ab8fafb"
+                ]
+            ],
+            "isActivated": true,
+            "additionalProperties": true,
+            "required": [
+                "lat",
+                "lon",
+                "alt",
+                "accuracy"
+            ]
+        }
+    },
+    "additionalProperties": true,
+    "isActivated": true,
+    "required": [
+        "type",
+        "id",
+        "airportname",
+        "city",
+        "country",
+        "tz",
+        "geo"
+    ]
+}

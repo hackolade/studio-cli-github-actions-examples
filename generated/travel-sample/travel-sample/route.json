@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "compliance": "full",
+    "type": "object",
+    "title": "route",
+    "properties": {
+        "type": {
+            "type": "string",
+            "documentKind": true,
+            "isActivated": true,
+            "sample": "route"
+        },
+        "id": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 12514
+        },
+        "airline": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "AV"
+        },
+        "airlineid": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "airline_515"
+        },
+        "sourceairport": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "SAL"
+        },
+        "destinationairport": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "EWR"
+        },
+        "stops": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 0
+        },
+        "equipment": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "320 738"
+        },
+        "schedule": {
+            "type": "array",
+            "additionalItems": true,
+            "isActivated": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "day": {
+                        "type": "number",
+                        "isActivated": true,
+                        "sample": 6
+                    },
+                    "flight": {
+                        "type": "string",
+                        "isActivated": true,
+                        "sample": "AV502"
+                    },
+                    "utc": {
+                        "type": "string",
+                        "isActivated": true,
+                        "sample": "06:36:00"
+                    }
+                },
+                "additionalProperties": true,
+                "isActivated": true,
+                "required": [
+                    "day",
+                    "flight",
+                    "utc"
+                ]
+            }
+        },
+        "distance": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 3358.381839978378
+        }
+    },
+    "additionalProperties": true,
+    "isActivated": true,
+    "required": [
+        "type",
+        "id",
+        "airline",
+        "airlineid",
+        "sourceairport",
+        "destinationairport",
+        "stops",
+        "equipment",
+        "schedule",
+        "distance"
+    ]
+}

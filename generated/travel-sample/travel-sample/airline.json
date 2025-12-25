@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "compliance": "full",
+    "type": "object",
+    "title": "airline",
+    "properties": {
+        "type": {
+            "type": "string",
+            "documentKind": true,
+            "isActivated": true,
+            "sample": "airline"
+        },
+        "id": {
+            "type": "number",
+            "isActivated": true,
+            "sample": 9833
+        },
+        "name": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Epic Holiday"
+        },
+        "iata": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "FA"
+        },
+        "icao": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "4AA"
+        },
+        "callsign": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "Epic"
+        },
+        "country": {
+            "type": "string",
+            "isActivated": true,
+            "sample": "United States"
+        }
+    },
+    "additionalProperties": true,
+    "isActivated": true,
+    "required": [
+        "type",
+        "id",
+        "name",
+        "icao",
+        "country"
+    ]
+}
