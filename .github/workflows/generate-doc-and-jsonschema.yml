@@ -13,7 +13,7 @@ jobs:
         DATA_VOLUMES_CONTAINER_NAME: hck-studio-cli-generated-data
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Build Hackolade Docker image
         id: build-studio-cli-docker-image
@@ -82,7 +82,7 @@ jobs:
       #https://github.com/actions/upload-artifact/tree/v4/?tab=readme-ov-file#zip-archives
       - name: Upload logs to Github Artifacts
         id: persist-logs
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: studio-cli-logs
           path: ./logs
@@ -96,7 +96,7 @@ jobs:
       # https://github.com/marketplace/actions/create-pull-request
       - name: Open Pull Request with generated documentation
         id: open-pr-with-updated-doc
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
         with:
           add-paths: ./generated
           branch: update-documentation-and-jsonschema-travel-model
